@@ -1,40 +1,57 @@
-// La lógica pura conectada al DOM
+// Funciones de validación independientes para poder reutilizarlas
 
-DOM.formulario.addEventListener('submit', function(evento) {
-    evento.preventDefault();
-    
-    let formularioValido = true;
-
-    // A) Validación del Nombre
+const validarNombre = () => {
     if (DOM.inputNombre.value.trim() === '') {
         UI.mostrarError(DOM.inputNombre, DOM.errorNombre, 'El nombre es obligatorio.');
-        formularioValido = false;
+        return false; // Retorna false si hay error
     } else {
         UI.limpiarError(DOM.inputNombre, DOM.errorNombre);
+        return true;  // Retorna true si está correcto
     }
+};
 
-    // B) Validación del Correo (Regex puro)
+const validarCorreo = () => {
     const regexCorreo = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (DOM.inputCorreo.value.trim() === '') {
         UI.mostrarError(DOM.inputCorreo, DOM.errorCorreo, 'El correo electrónico es obligatorio.');
-        formularioValido = false;
+        return false;
     } else if (!regexCorreo.test(DOM.inputCorreo.value.trim())) {
-        UI.mostrarError(DOM.inputCorreo, DOM.errorCorreo, 'Ingresa un formato de correo válido (ej: nombre@dominio.com).');
-        formularioValido = false;
+        UI.mostrarError(DOM.inputCorreo, DOM.errorCorreo, 'Ingresa un formato válido (ej: nombre@dominio.com).');
+        return false;
     } else {
         UI.limpiarError(DOM.inputCorreo, DOM.errorCorreo);
+        return true;
     }
+};
 
-    // C) Validación del Mensaje
+const validarMensaje = () => {
     if (DOM.inputMensaje.value.trim() === '') {
         UI.mostrarError(DOM.inputMensaje, DOM.errorMensaje, 'El mensaje no puede estar vacío.');
-        formularioValido = false;
+        return false;
     } else {
         UI.limpiarError(DOM.inputMensaje, DOM.errorMensaje);
+        return true;
     }
+};
 
-    // --- DECISIÓN FINAL ---
-    if (formularioValido) {
+// --- EVENTOS EN TIEMPO REAL ---
+// El evento 'input' se dispara cada vez que el valor del campo cambia (al teclear).
+DOM.inputNombre.addEventListener('input', validarNombre);
+DOM.inputCorreo.addEventListener('input', validarCorreo);
+DOM.inputMensaje.addEventListener('input', validarMensaje);
+
+
+// --- EVENTO SUBMIT (Envío del formulario) ---
+DOM.formulario.addEventListener('submit', function(evento) {
+    evento.preventDefault(); // Evita que la página se recargue
+    
+    // Ejecutamos todas las validaciones a la vez al momento de enviar
+    const nombreValido = validarNombre();
+    const correoValido = validarCorreo();
+    const mensajeValido = validarMensaje();
+
+    // Si TODAS son verdaderas (true), mostramos el éxito
+    if (nombreValido && correoValido && mensajeValido) {
         UI.mostrarExito();
     } else {
         UI.ocultarExito();
