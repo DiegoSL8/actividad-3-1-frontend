@@ -1,10 +1,11 @@
+/* --- CONFIGURACIÓN BASE --- */
 * {
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #f4f4f9;
+    background-color: #e9ecef;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,47 +13,62 @@ body {
     margin: 0;
 }
 
+/* --- TARJETA PRINCIPAL --- */
 .form-container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #ffffff;
+    padding: 35px 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
 }
 
 h2 {
     text-align: center;
-    color: #333;
+    color: #2c3e50;
     margin-top: 0;
+    margin-bottom: 25px;
+    font-weight: 600;
 }
 
+/* --- FORMULARIO Y CAMPOS --- */
 .form-group {
     margin-bottom: 15px;
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.9em;
 }
 
 input[type="text"],
 textarea {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px;
+    border: 1.5px solid #ced4da;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-/* Clases dinámicas para errores que usaremos en JS */
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* --- ESTILOS DE VALIDACIÓN (JS) --- */
 .error-message {
     color: #e74c3c;
     font-size: 0.85em;
     display: block;
     margin-top: 5px;
-    min-height: 15px; /* Mantiene el espacio aunque esté vacío */
+    min-height: 18px;
+    font-weight: 500;
 }
 
 .input-error {
@@ -60,32 +76,85 @@ textarea {
     background-color: #fdf0ef;
 }
 
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #2980b9;
-}
-
 .success-message {
     background-color: #d4edda;
     color: #155724;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
     text-align: center;
     border: 1px solid #c3e6cb;
+    font-weight: 500;
 }
 
 .oculto {
     display: none;
+}
+
+/* --- BOTONES --- */
+.btn-principal {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn-principal:hover {
+    background-color: #2980b9;
+}
+
+.btn-principal:active {
+    transform: scale(0.98);
+}
+
+/* --- SECCIÓN NUEVA: CAJA DE INFORMACIÓN --- */
+.divisor {
+    border: 0;
+    height: 1px;
+    background: #e9ecef;
+    margin: 25px 0 20px 0;
+}
+
+.info-box {
+    text-align: center;
+}
+
+#infoTexto {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+/* Clase dinámica inyectada por JS (toggle) */
+.texto-resaltado {
+    background-color: #fff3cd;
+    color: #856404 !important;
+    border: 1px solid #ffeeba;
+    font-weight: bold;
+}
+
+.btn-secundario {
+    padding: 8px 16px;
+    background-color: transparent;
+    color: #6c757d;
+    border: 1.5px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-secundario:hover {
+    background-color: #f8f9fa;
+    color: #495057;
+    border-color: #adb5bd;
 }

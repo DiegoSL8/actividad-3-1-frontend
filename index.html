@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto - Validación DOM</title>
+    <title>Contacto los papus - Validación y DOM</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -32,10 +32,18 @@
                 <span id="errorMensaje" class="error-message"></span>
             </div>
 
-            <button type="submit">Enviar Mensaje</button>
+            <button type="submit" class="btn-principal">Enviar Mensaje</button>
         </form>
+
+        <hr class="divisor">
+        <div class="info-box">
+            <p id="infoTexto">Completa el formulario para enviarnos tu consulta.</p>
+            <button type="button" id="btnResaltar" class="btn-secundario">Mostras mas Información</button>
+        </div>
+
     </div>
 
+    <script src="dom.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
